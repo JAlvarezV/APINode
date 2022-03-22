@@ -34,6 +34,10 @@ function jsonParser(stringValue, key) {
     console.log(JSON.stringify(req.query));
     console.log("Body:\n");
     console.log(JSON.stringify(req.body));
+
+    console.log("Documents:")
+    console.log(jsonParser(JSON.stringify(req.body),"document"));
+
  }
 
 
