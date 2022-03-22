@@ -3,7 +3,7 @@ const port = 80;
 const app = express();
 
 app.listen(process.env.PORT || port, () => {
- console.log("El servidor está inicializado en el puerto " + port);
+ console.log("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 
 app.get('/', function (req, res) {
