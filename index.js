@@ -16,13 +16,16 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     logRequest(req);
-    console.log("Documents:")
-    var docsTemp = jsonParser(req.body,"message");
-    console.log(docsTemp);
-    console.log("\n");
-    console.log(jsonParser(docsTemp,"document"));
+    console.log("Message:")
+    var msgTemp = jsonParser(req.body,"message");
+    console.log(msgTemp);
+    var docTemp = jsonParser(msgTemp,"document");
+    console.log("Document:")
+    console.log(docTemp);    
+    var docId = jsonParser(docTemp,"file_id");
+    console.log("Document ID: " + docId);
+    
     res.send("OK");
-
 });
 
 function jsonParser(stringValue, key) {
