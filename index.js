@@ -11,7 +11,5 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    console.log("Headers: " + req.headers + "\n");
-    console.log("Params: " + req.params + "\n");
-    console.log("Body: " + req.body + "\n");    
+    res.send("Headers: " + req.headers + "\n" + "Params: " + req.params + "\n" + "Body: " + req.body + "\n"); 
 });
