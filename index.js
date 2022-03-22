@@ -12,5 +12,5 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    res.send(JSON.stringify(req.headers) + JSON.stringify(param(test)) + JSON.stringify(req.body));
+    res.send(JSON.stringify(req.headers) + JSON.stringify(param("test")) + JSON.stringify(req.body));
 });
