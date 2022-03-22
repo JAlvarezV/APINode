@@ -30,10 +30,12 @@ app.post('/', function (req, res) {
 
     if ( typeof docId !== 'undefined' && docId )
     {        
-        https.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
+        const req2 = https.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
             console.log("Downloading image...URL: " + "https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId);
             console.log(JSON.stringify(response.body));
         });
+        console.log("req2");
+        console.log(JSON.stringify(req2.body));
         res.send("OK");
     }else{
         console.log("DocID Not Found");
