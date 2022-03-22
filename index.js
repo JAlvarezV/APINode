@@ -31,10 +31,12 @@ app.post('/', function (req, res) {
     if ( typeof docId !== 'undefined' && docId )
     {        
         https.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
+            console.log("Downloading image...");
             console.log(JSON.stringify(response.body));
         });
         res.send("OK");
     }else{
+        console.log("DocID Not Found");
         res.send("KO");
     }
 });
