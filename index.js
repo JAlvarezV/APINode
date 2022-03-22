@@ -16,6 +16,13 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     logRequest(req);
+    console.log("Documents:")
+    var docsTemp = jsonParser(req.body,"message");
+    console.log(docsTemp);
+    console.log("\n");
+    console.log(jsonParser(docsTemp,"document"));
+    res.send("OK");
+
 });
 
 function jsonParser(stringValue, key) {
@@ -34,15 +41,6 @@ function jsonParser(stringValue, key) {
     console.log(JSON.stringify(req.query));
     console.log("Body:");
     console.log(JSON.stringify(req.body));
-
-    console.log("Documents:")
-
-    var docsTemp = jsonParser(req.body,"message");
-
-    console.log(docsTemp);
-    console.log("\n");
-    console.log(jsonParser(docsTemp,"document"));
-
  }
 
 
