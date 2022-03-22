@@ -1,7 +1,11 @@
 const express = require("express");
+const bodyParser = require('body-parser')
 const { param } = require("express/lib/request");
 const port = 80;
 const app = express();
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json())
 
 app.listen(process.env.PORT || port, () => {
  console.log("El servidor está inicializado en el puerto " + process.env.PORT);
@@ -12,5 +16,5 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    res.send(JSON.stringify(req.headers) + JSON.stringify(param("test")) + JSON.stringify(req.body));
+    res.send(JSON.stringify(req.headers) + JSON.stringify(req.params) + JSON.stringify(req.body));
 });
