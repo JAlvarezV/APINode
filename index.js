@@ -8,6 +8,7 @@ app.listen(process.env.PORT || port, () => {
 
 app.get('/', function (req, res) {
     res.send('Saludos desde express');
+    res.send("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 
 app.post('/', function (req, res) {
