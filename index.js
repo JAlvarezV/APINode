@@ -15,9 +15,27 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    res.send(JSON.stringify(req.headers) + JSON.stringify(req.query) + JSON.stringify(req.body));
-    console.log(JSON.stringify(req.headers) + JSON.stringify(req.query) + JSON.stringify(req.body));
+    logRequest(req);
 });
+
+function jsonParser(stringValue, key) {
+    var string = JSON.stringify(stringValue);
+    var objectValue = JSON.parse(string);
+    return objectValue[key];
+ }
+
+
+ function logRequest(req){
+    console.log("Headers:\n");
+    console.log(JSON.stringify(req.headers));
+    console.log("Params:\n");
+    console.log(JSON.stringify(req.params));
+    console.log("Query:\n");
+    console.log(JSON.stringify(req.query));
+    console.log("Body:\n");
+    console.log(JSON.stringify(req.body));
+ }
+
 
 
 /*
