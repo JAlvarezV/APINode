@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require('body-parser')
+const https = require('https'); // or 'https' for https:// URLs
+const fs = require('fs');
 const { param } = require("express/lib/request");
+
 const app = express();
 
 app.use(bodyParser.urlencoded());
@@ -24,8 +27,16 @@ app.post('/', function (req, res) {
     console.log(docTemp);    
     var docId = jsonParser(docTemp,"file_id");
     console.log("Document ID: " + docId);
-    
-    res.send("OK");
+
+    if ( typeof docId !== 'undefined' && docId )
+    {        
+        http.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
+            console.log(JSON.stringify(response.body));
+        });
+        res.send("OK");
+    }else{
+        res.send("KO");
+    }
 });
 
 function jsonParser(stringValue, key) {
@@ -33,7 +44,6 @@ function jsonParser(stringValue, key) {
     var objectValue = JSON.parse(string);
     return objectValue[key];
  }
-
 
  function logRequest(req){
     console.log("Headers:");
