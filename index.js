@@ -26,17 +26,17 @@ function jsonParser(stringValue, key) {
 
 
  function logRequest(req){
-    console.log("Headers:\n");
+    console.log("Headers:");
     console.log(JSON.stringify(req.headers));
-    console.log("Params:\n");
+    console.log("Params:");
     console.log(JSON.stringify(req.params));
-    console.log("Query:\n");
+    console.log("Query:");
     console.log(JSON.stringify(req.query));
-    console.log("Body:\n");
+    console.log("Body:");
     console.log(JSON.stringify(req.body));
 
     console.log("Documents:")
-    console.log(jsonParser(JSON.stringify(req.body),"document"));
+    console.log(jsonParser(req.body,"message"));
 
  }
 
