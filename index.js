@@ -25,9 +25,13 @@ app.post('/', function (req, res) {
     console.log(msgTemp);
     var docTemp = jsonParser(msgTemp,"document");
     console.log("Document:")
-    console.log(docTemp);    
-    var docId = jsonParser(docTemp,"file_id");
-    console.log("Document ID: " + docId);
+    console.log(docTemp);   
+    var docId;
+    if ( typeof docTemp !== 'undefined' && docTemp )
+    {          
+       docId = jsonParser(docTemp,"file_id");
+       console.log("Document ID: " + docId);
+    } 
 
     if ( typeof docId !== 'undefined' && docId )
     {       
