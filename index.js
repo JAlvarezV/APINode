@@ -17,4 +17,5 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     res.send(JSON.stringify(req.headers) + JSON.stringify(req.query) + JSON.stringify(req.body));
+    console.log(JSON.stringify(req.headers) + JSON.stringify(req.query) + JSON.stringify(req.body));
 });
