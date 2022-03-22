@@ -1,4 +1,5 @@
 const express = require("express");
+const { param } = require("express/lib/request");
 const port = 80;
 const app = express();
 
@@ -11,5 +12,5 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    res.send(JSON.stringify(req.headers) + JSON.stringify(req.params) + JSON.stringify(req.body)); 
+    res.send(JSON.stringify(req.headers) + JSON.stringify(param(test)) + JSON.stringify(req.body));
 });
