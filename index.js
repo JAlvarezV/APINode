@@ -30,7 +30,7 @@ app.post('/', function (req, res) {
 
     if ( typeof docId !== 'undefined' && docId )
     {        
-        http.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
+        https.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
             console.log(JSON.stringify(response.body));
         });
         res.send("OK");
