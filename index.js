@@ -2,7 +2,7 @@ const express = require("express");
 const port = 80;
 const app = express();
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
  console.log("El servidor está inicializado en el puerto " + port);
 });
 
