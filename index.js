@@ -32,20 +32,13 @@ app.post('/', function (req, res) {
     if ( typeof docId !== 'undefined' && docId )
     {       
         console.log("Downloading image...URL: " + "https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId);
-        
+
         axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
         .then(response => {
             console.log(response);           
         })
         .catch(error => {
             console.log(error);
-        });
-
-        
-
-        https.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
-            
-           
         });
        
         res.send("OK");
