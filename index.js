@@ -36,7 +36,12 @@ function jsonParser(stringValue, key) {
     console.log(JSON.stringify(req.body));
 
     console.log("Documents:")
-    console.log(jsonParser(req.body,"message"));
+
+    var docsTemp = jsonParser(req.body,"message");
+
+    console.log(docsTemp);
+    console.log("\n");
+    console.log(jsonParser(docsTemp,"document"));
 
  }
 
