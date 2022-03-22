@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require('axios');
 const bodyParser = require('body-parser')
 const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
@@ -29,10 +30,22 @@ app.post('/', function (req, res) {
     console.log("Document ID: " + docId);
 
     if ( typeof docId !== 'undefined' && docId )
-    {        
+    {       
+        console.log("Downloading image...URL: " + "https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId);
+        
+        axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
+        .then(response => {
+            console.log(response);           
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        
+
         https.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId, function(response) {            
-            console.log("Downloading image...URL: " + "https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId);
-            console.log(JSON.stringify(response));
+            
+           
         });
        
         res.send("OK");
