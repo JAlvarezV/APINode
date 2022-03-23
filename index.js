@@ -26,12 +26,12 @@ app.post('/', function (req, res) {
     var chatTemp =  jsonParser(msgTemp,"chat");
     var chatId =  jsonParser(chatTemp,"id");
     console.log("ChatID: " + chatId);
-    var docTemp = jsonParser(msgTemp,"document");
-    console.log("Document:")
-    console.log(docTemp);   
+    var docTemp = jsonParser(msgTemp,"document");     
     var docId;
     if ( typeof docTemp !== 'undefined' && docTemp )
     {          
+       console.log("Document:")
+       console.log(docTemp);  
        docId = jsonParser(docTemp,"file_id");
        console.log("Document ID: " + docId);
     } 
@@ -51,12 +51,15 @@ app.post('/', function (req, res) {
         res.send("OK");
     }else{
         /*DialogFlow Call*/
+        console.log("DialogFlow Call");
+        axios.post("https://dialogflow.googleapis.com/v2/projects/calm-sylph-344317/agent/sessions/"+chatId+":detectIntent")
+        .then(response => {
+            console.log("Response from DialogFlow: ");
+            console.log(response);
+        });
         console.log("DocID Not Found");
         res.send("KO");
     }
-
-
-
 });
 
 function jsonParser(stringValue, key) {
