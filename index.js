@@ -19,13 +19,13 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    logRequest(req);
-    /*var chatTemp =  jsonParser(req.body,"chat");
-    var chatId =  jsonParser(chatTemp,"id");
-    console.log("ChatID: " + chatId);*/
+    logRequest(req);    
     console.log("Message:")
     var msgTemp = jsonParser(req.body,"message");
     console.log(msgTemp);
+    var chatTemp =  jsonParser(msgTemp,"chat");
+    var chatId =  jsonParser(chatTemp,"id");
+    console.log("ChatID: " + chatId);
     var docTemp = jsonParser(msgTemp,"document");
     console.log("Document:")
     console.log(docTemp);   
@@ -66,12 +66,12 @@ function jsonParser(stringValue, key) {
  }
 
  function logRequest(req){
-    console.log("Headers:");
+    /*console.log("Headers:");
     console.log(JSON.stringify(req.headers));
     console.log("Params:");
     console.log(JSON.stringify(req.params));
     console.log("Query:");
-    console.log(JSON.stringify(req.query));
+    console.log(JSON.stringify(req.query));*/
     console.log("Body:");
     console.log(JSON.stringify(req.body));
  }
