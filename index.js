@@ -20,6 +20,9 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     logRequest(req);
+    var chatTemp =  jsonParser(req.body,"chat");
+    var chatId =  jsonParser(chatTemp,"id");
+    console.log("ChatID: " + chatId);
     console.log("Message:")
     var msgTemp = jsonParser(req.body,"message");
     console.log(msgTemp);
@@ -50,6 +53,9 @@ app.post('/', function (req, res) {
         console.log("DocID Not Found");
         res.send("KO");
     }
+
+
+
 });
 
 function jsonParser(stringValue, key) {
