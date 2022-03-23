@@ -5,6 +5,8 @@ const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
 const { param } = require("express/lib/request");
 
+
+
 const app = express();
 
 app.use(bodyParser.urlencoded());
@@ -52,11 +54,26 @@ app.post('/', function (req, res) {
     }else{
         /*DialogFlow Call*/
         console.log("DialogFlow Call");
-        /*axios.post("https://dialogflow.googleapis.com/v2/projects/calm-sylph-344317/agent/sessions/"+chatId+":detectIntent")
+
+        axios({
+            method: 'post',
+            url: "https://dialogflow.googleapis.com/v2/projects/calm-sylph-344317/agent/sessions/"+chatId+":detectIntent",
+            headers: {'Authorization': "key=" + "AIzaSyAJimM1CjjLjoi-aNulU34bu80RklaOrcc",'Content-Type': 'application/json'}, 
+            data: {
+              "query_input" : {
+                  "text": {
+                      "text": "hola",
+                      "language-code": "en-US"
+                  }
+              }
+            }
+          })
         .then(response => {
+            process.env.DFApiKey
             console.log("Response from DialogFlow: ");
             console.log(response);
-        });*/
+        });
+
         console.log("DocID Not Found");
         res.send("KO");
     }
