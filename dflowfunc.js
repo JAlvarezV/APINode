@@ -12,17 +12,17 @@
 //   'B'  // Rooms are defined on the Dialogflow agent, default options are A, B, or C
 // ]
 // languageCode: Indicates the language Dialogflow agent should use to detect intents
+// Imports the Google Cloud client library.
+var projectId = process.env.projectId;
+const keyFilename = './key.json'
 
-const languageCode = 'en';
-
-// Imports the Dialogflow library
+const {Storage} = require('@google-cloud/storage');
 const dialogflow = require('@google-cloud/dialogflow');
 const { query } = require('express');
-
-// Instantiates a session client
+const storage = new Storage({projectId, keyFilename});
+const languageCode = 'en';
 const sessionClient = new dialogflow.SessionsClient();
 
-var projectId = process.env.projectId;
 var sessionId = "123456";
 
 
@@ -85,7 +85,20 @@ module.exports = {
       console.log(error);
     }
   }
-}
+},
+
+listBuckets: async function listBuckets() {
+    try {
+      const [buckets] = await storage.getBuckets();
+  
+      console.log('Buckets:');
+      buckets.forEach(bucket => {
+        console.log(bucket.name);
+      });
+    } catch (err) {
+      console.error('ERROR:', err);
+    }
+  }
 
 }
 
