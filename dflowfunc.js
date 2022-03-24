@@ -15,13 +15,11 @@
 // Imports the Google Cloud client library.
 var projectId = process.env.projectId;
 const keyFilename = './key.json'
-
-const {Storage} = require('@google-cloud/storage');
 const dialogflow = require('@google-cloud/dialogflow');
 const { query } = require('express');
-const storage = new Storage({projectId, keyFilename});
+
 const languageCode = 'en';
-const sessionClient = new dialogflow.SessionsClient();
+const sessionClient = new dialogflow.SessionsClient({projectId, keyFilename});
 
 var sessionId = "123456";
 

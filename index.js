@@ -40,10 +40,9 @@ app.get('/', function (req, res) {
 
 
 app.get('/q', function (req, res) {  
-    f.listBuckets();
-   /*f.executeQueries([
+   f.executeQueries([
     "Hello"
-    ]);*/
+    ]);
     res.send("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 
