@@ -6,7 +6,7 @@ const cors = require('cors')
 const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
 const { param } = require("express/lib/request");
-require('./passport-setup');
+
 
 
 const app = express();
@@ -27,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
+
+require('./passport-setup');
 
 app.listen(process.env.PORT, () => {
  console.log("El servidor está inicializado en el puerto " + process.env.PORT);
