@@ -22,7 +22,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
-    callbackURL: "https://localhost/"
+    callbackURL: "https://apirnodet.herokuapp.com/"
   },
   function(accessToken, refreshToken, profile, done) {
     /*
