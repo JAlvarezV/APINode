@@ -13,7 +13,7 @@
 // ]
 // languageCode: Indicates the language Dialogflow agent should use to detect intents
 
-import axios from 'axios';
+const axios = require('axios');
 
 // Imports the Google Cloud client library.
 var projectId = process.env.projectId;
