@@ -40,7 +40,9 @@ app.get('/', function (req, res) {
 
 
 app.get('/q', function (req, res) {  
-    f.executeQueries(f.projectId, f.sessionId, f.queries, f.languageCode);      
+   f.executeQueries([
+    "Hello"
+    ]);
     res.send("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 

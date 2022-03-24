@@ -12,6 +12,7 @@
 //   'B'  // Rooms are defined on the Dialogflow agent, default options are A, B, or C
 // ]
 // languageCode: Indicates the language Dialogflow agent should use to detect intents
+
 const languageCode = 'en';
 
 // Imports the Dialogflow library
@@ -23,9 +24,7 @@ const sessionClient = new dialogflow.SessionsClient();
 
 var projectId = process.env.projectId;
 var sessionId = "123456";
-const queries = [
-    "Hello"
-];
+
 
 async function detectIntent(
   projectId,
@@ -61,7 +60,8 @@ async function detectIntent(
   return responses[0];
 }
 
-async function executeQueries(projectId, sessionId, queries, languageCode) {
+module.exports = {
+    executeQueries: async function executeQueries(queries) {
   // Keeping the context across queries let's us simulate an ongoing conversation with the bot
   let context;
   let intentResponse;
@@ -86,4 +86,8 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
     }
   }
 }
+
+}
+
+
 
