@@ -23,7 +23,7 @@ const isLoggedIn = (req, res, next) => {
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(session({ secret: 'SECRET' }));
+app.use(session({ secret: process.env.clientSecret }));
 app.use(passport.initialize());
 app.use(passport.session());
 
