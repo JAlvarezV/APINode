@@ -37,6 +37,10 @@ app.get('/', function (req, res) {
     res.send("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 
+app.get('/failed', function (req, res) {  
+    res.send("Failed!!");
+});
+
 // In this route you can see that if the user is logged in u can acess his info in: req.user
 app.get('/good', isLoggedIn, (req, res) => res.send(`Welcome mr ${req.user.displayName}!`))
 
