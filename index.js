@@ -1,35 +1,16 @@
 const express = require("express");
-var session = require('express-session');
 const app = express();
 const axios = require('axios');
-const bodyParser = require('body-parser')
-const passport = require('passport');
+const bodyParser = require('body-parser');
 const cors = require('cors')
-const https = require('https'); // or 'https' for https:// URLs
-const fs = require('fs');
-const { param } = require("express/lib/request");
+//const fs = require('fs');
 require('./passport-setup');
 const f = require('./dflowfunc');
 const { send } = require("process");
 
-// Auth middleware that checks if the user is logged in
-const isLoggedIn = (req, res, next) => {
-    if (req.user) {
-        next();
-    } else {
-        res.sendStatus(401);
-    }
-}
-
-
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(session({ secret: process.env.clientSecret }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 
 app.listen(process.env.PORT, () => {
  console.log("El servidor está inicializado en el puerto " + process.env.PORT);
@@ -38,34 +19,6 @@ app.listen(process.env.PORT, () => {
 app.get('/', function (req, res) {  
     res.send("El servidor está inicializado en el puerto " + process.env.PORT);
 });
-
-
-app.get('/q', function (req, res) {  
-   f.executeQueries([
-    "Hello"
-    ]);
-    res.send("El servidor está inicializado en el puerto " + process.env.PORT);
-});
-
-app.get('/failed', function (req, res) {  
-    res.send("Failed!!");
-});
-
-// In this route you can see that if the user is logged in u can acess his info in: req.user
-app.get('/good', isLoggedIn, (req, res) => res.send(`Welcome mr ${req.user.displayName}!`))
-
-
-// Auth Routes
-app.get('/google', passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/dialogflow"] }));
-
-app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/good');
-  }
-);
-
-
 
 app.post('/', function (req, res) {
     logRequest(req);    
@@ -126,19 +79,7 @@ function jsonParser(stringValue, key) {
     console.log("Params:");
     console.log(JSON.stringify(req.params));
     console.log("Query:");
-    console.log(JSON.stringify(req.query));*/
+    console.log(JSON.stringify(req.query));
     console.log("Body:");
-    console.log(JSON.stringify(req.body));
+    console.log(JSON.stringify(req.body));*/
  }
-
-
-
-/*
-const http = require('http'); // or 'https' for https:// URLs
-const fs = require('fs');
-
-const file = fs.createWriteStream("file.jpg");
-const request = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function(response) {
-  response.pipe(file);
-});
-*/
