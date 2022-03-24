@@ -1,4 +1,5 @@
 const express = require("express");
+var session = require('express-session');
 const app = express();
 const axios = require('axios');
 const bodyParser = require('body-parser')
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(session({ secret: 'SECRET' }));
 
 
 app.listen(process.env.PORT, () => {
