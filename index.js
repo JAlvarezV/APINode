@@ -64,6 +64,8 @@ app.get('/google/callback', passport.authenticate('google', { failureRedirect: '
   }
 );
 
+
+
 app.post('/', function (req, res) {
     logRequest(req);    
     console.log("Message:")
@@ -98,6 +100,7 @@ app.post('/', function (req, res) {
     }else{
         /*DialogFlow Call*/
         console.log("DialogFlow Call");
+        f.sessionId = chatId;
         f.executeQueries([msgTemp.text]);        
         console.log("DocID Not Found");
         res.send("KO");

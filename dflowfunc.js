@@ -12,6 +12,9 @@
 //   'B'  // Rooms are defined on the Dialogflow agent, default options are A, B, or C
 // ]
 // languageCode: Indicates the language Dialogflow agent should use to detect intents
+
+import axios from 'axios';
+
 // Imports the Google Cloud client library.
 var projectId = process.env.projectId;
 const keyFilename = './key.json'
@@ -21,7 +24,7 @@ const { query } = require('express');
 const languageCode = 'en';
 const sessionClient = new dialogflow.SessionsClient({projectId, keyFilename});
 
-var sessionId = "123456";
+export var sessionId = "123456";
 
 
 async function detectIntent(
@@ -77,6 +80,18 @@ module.exports = {
       console.log(
         `Fulfillment Text: ${intentResponse.queryResult.fulfillmentText}`
       );
+      //Return response to telegram
+      axios.post("https://api.telegram.org/bot"+ process.env.telegramToken + "/sendMessage",
+      {
+        chat_id: sessionId,
+        text: intentResponse.queryResult.fulfillmentText
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });      
       // Use the context from this response for next queries
       context = intentResponse.queryResult.outputContexts;
     } catch (error) {
