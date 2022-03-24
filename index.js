@@ -98,26 +98,7 @@ app.post('/', function (req, res) {
     }else{
         /*DialogFlow Call*/
         console.log("DialogFlow Call");
-
-        axios({
-            method: 'post',
-            url: "https://dialogflow.googleapis.com/v2/projects/calm-sylph-344317/agent/sessions/"+chatId+":detectIntent",
-            headers: {'Content-Type': 'application/json'}, 
-            data: {
-              "query_input" : {
-                  "text": {
-                      "text": "hola",
-                      "language-code": "en-US"
-                  }
-              }
-            }
-          })
-        .then(response => {
-            process.env.DFApiKey
-            console.log("Response from DialogFlow: ");
-            console.log(response);
-        });
-
+        f.executeQueries(msgTemp.text);        
         console.log("DocID Not Found");
         res.send("KO");
     }
