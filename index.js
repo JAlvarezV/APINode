@@ -28,7 +28,7 @@ app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.listen(proces.env.PORT, () => {
+app.listen(process.env.PORT, () => {
  console.log("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 
