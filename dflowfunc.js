@@ -24,7 +24,7 @@ const { query } = require('express');
 const languageCode = 'en';
 const sessionClient = new dialogflow.SessionsClient({projectId, keyFilename});
 
-export var sessionId = "123456";
+var sessionId = "123456";
 
 
 async function detectIntent(
@@ -98,6 +98,10 @@ module.exports = {
       console.log(error);
     }
   }
+},
+
+setIdSession: function setIdSession(value){
+    sessionId = value
 },
 
 listBuckets: async function listBuckets() {

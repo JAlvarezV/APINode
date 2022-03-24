@@ -100,7 +100,7 @@ app.post('/', function (req, res) {
     }else{
         /*DialogFlow Call*/
         console.log("DialogFlow Call");
-        f.sessionId = chatId;
+        f.setIdSession(chatId);
         f.executeQueries([msgTemp.text]);        
         console.log("DocID Not Found");
         res.send("KO");
