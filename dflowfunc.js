@@ -99,7 +99,6 @@ listBuckets: async function listBuckets() {
       console.error('ERROR:', err);
     }
   }
-
 }
 
 
