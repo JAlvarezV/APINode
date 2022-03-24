@@ -4,7 +4,6 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 //const fs = require('fs');
-require('./passport-setup');
 const f = require('./dflowfunc');
 const { send } = require("process");
 
