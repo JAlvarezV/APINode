@@ -10,6 +10,7 @@ const fs = require('fs');
 const { param } = require("express/lib/request");
 require('./passport-setup');
 const f = require('./dflowfunc');
+const { send } = require("process");
 
 // Auth middleware that checks if the user is logged in
 const isLoggedIn = (req, res, next) => {
@@ -106,6 +107,9 @@ app.post('/', function (req, res) {
             console.log("DocID Not Found");
             res.send("KO");
         }
+    }
+    else{
+        res.send("No message input");
     }
     
 });
