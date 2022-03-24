@@ -98,7 +98,7 @@ app.post('/', function (req, res) {
     }else{
         /*DialogFlow Call*/
         console.log("DialogFlow Call");
-        f.executeQueries(msgTemp.text);        
+        f.executeQueries([msgTemp.text]);        
         console.log("DocID Not Found");
         res.send("KO");
     }
