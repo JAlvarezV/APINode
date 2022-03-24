@@ -9,6 +9,7 @@ const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
 const { param } = require("express/lib/request");
 require('./passport-setup');
+require('./dflowfunc');
 
 // Auth middleware that checks if the user is logged in
 const isLoggedIn = (req, res, next) => {
@@ -34,6 +35,12 @@ app.listen(process.env.PORT, () => {
 });
 
 app.get('/', function (req, res) {  
+    res.send("El servidor está inicializado en el puerto " + process.env.PORT);
+});
+
+
+app.get('/q', function (req, res) {  
+    executeQueries(projectId, sessionId, queries, languageCode);  
     res.send("El servidor está inicializado en el puerto " + process.env.PORT);
 });
 
