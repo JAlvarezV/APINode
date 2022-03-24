@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const axios = require('axios');
 const bodyParser = require('body-parser')
 const passport = require('passport');
@@ -6,11 +7,7 @@ const cors = require('cors')
 const https = require('https'); // or 'https' for https:// URLs
 const fs = require('fs');
 const { param } = require("express/lib/request");
-
-
-
-const app = express();
-
+require('./passport-setup');
 
 // Auth middleware that checks if the user is logged in
 const isLoggedIn = (req, res, next) => {
@@ -28,7 +25,6 @@ app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./passport-setup');
 
 app.listen(process.env.PORT, () => {
  console.log("El servidor está inicializado en el puerto " + process.env.PORT);
