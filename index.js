@@ -38,20 +38,25 @@ app.post('/', function (req, res) {
            // console.log("Document ID: " + docId);
         } 
 
+        
+
         if ( typeof docId !== 'undefined' && docId )
         {       
             console.log("Downloading image...URL: " + "https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId);
 
             axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
             .then(response => {
-                axios.post(process.env.capApiDocs, {                    
+
+                axios.post(process.env.capApiDocs, {                                        
+                    'chat_id': chatId,
+                    'file_url': "https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path
+                },{
                     headers: {
                         'Content-Type': 'application/json',
                         'Appian-API-Key': process.env.capApiToken
-                    },
-                    'chat_id': chatId,
-                    'file_url': "https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path
-                })      
+                    }
+                }
+                )      
                 .then((response) => {
                    console.log(response);
                 })
