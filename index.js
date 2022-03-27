@@ -21,21 +21,21 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
     logRequest(req);    
-    console.log("Message:")
+    //console.log("Message:")
     var msgTemp = jsonParser(req.body,"message");
     if ( typeof msgTemp !== 'undefined' && msgTemp ){
-        console.log(msgTemp);
+        //console.log(msgTemp);
         var chatTemp =  jsonParser(msgTemp,"chat");
         var chatId =  jsonParser(chatTemp,"id");
-        console.log("ChatID: " + chatId);
+       //console.log("ChatID: " + chatId);
         var docTemp = jsonParser(msgTemp,"document");     
         var docId;
         if ( typeof docTemp !== 'undefined' && docTemp )
         {          
-            console.log("Document:")
+            //console.log("Document:")
             console.log(docTemp);  
             docId = jsonParser(docTemp,"file_id");
-            console.log("Document ID: " + docId);
+           // console.log("Document ID: " + docId);
         } 
 
         if ( typeof docId !== 'undefined' && docId )
@@ -44,7 +44,7 @@ app.post('/', function (req, res) {
 
             axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
             .then(response => {
-                console.log(response);           
+                console.log(response.data);           
             })
             .catch(error => {
                 console.log(error);

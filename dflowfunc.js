@@ -24,7 +24,7 @@ const { query } = require('express');
 const languageCode = 'en';
 const sessionClient = new dialogflow.SessionsClient({projectId, keyFilename});
 
-var sessionId = "123456";
+var sessionId;
 
 
 async function detectIntent(
