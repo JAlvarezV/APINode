@@ -35,7 +35,7 @@ app.post('/', function (req, res) {
             //console.log("Document:")
             //console.log(docTemp);  
             docId = jsonParser(docTemp,"file_id");
-           // console.log("Document ID: " + docId);
+            console.log("Document ID: " + docId);
         } 
 
         
@@ -46,7 +46,7 @@ app.post('/', function (req, res) {
 
             axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
             .then(response => {
-
+                console.log("FILE PATH: " + response.data.result.file_path);
                 axios.post(process.env.capApiDocs, {                                        
                     'chat_id': chatId,
                     'file_url': "https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path
