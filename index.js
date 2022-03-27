@@ -46,7 +46,10 @@ app.post('/', function (req, res) {
 
             axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
             .then(response => {
+                
                 console.log("FILE PATH: " + response.data.result.file_path);
+                console.log("https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path);
+
                 axios.post(process.env.capApiDocs, {                                        
                     'chat_id': chatId,
                     'file_url': "https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path
