@@ -47,7 +47,7 @@ app.post('/', function (req, res) {
                 axios.post(process.env.capApiDocs, {                    
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': "Appian-API-Key: " + process.env.capApiToken
+                        'Appian-API-Key': process.env.capApiToken
                     },
                     'chat_id': chatId,
                     'file_url': "https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path
