@@ -33,7 +33,7 @@ app.post('/', function (req, res) {
         if ( typeof docTemp !== 'undefined' && docTemp )
         {          
             //console.log("Document:")
-            console.log(docTemp);  
+            //console.log(docTemp);  
             docId = jsonParser(docTemp,"file_id");
            // console.log("Document ID: " + docId);
         } 
@@ -44,7 +44,20 @@ app.post('/', function (req, res) {
 
             axios.get("https://api.telegram.org/bot" + process.env.telegramToken + "/getFile?file_id="+docId)        
             .then(response => {
-                console.log(response.data);           
+                axios.post(process.env.capApiDocs, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Appian-API-Key': process.env.capApiToken
+                    },
+                    'chat_id': chatId,
+                    'file_url': "https://api.telegram.org/bot" + process.env.telegramToken + "/" + response.data.result.file_path
+                })      
+                .then((response) => {
+                   console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })   
             })
             .catch(error => {
                 console.log(error);
