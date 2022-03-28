@@ -27,7 +27,7 @@ app.post('/', function (req, res) {
         //console.log(msgTemp);
         var chatTemp =  jsonParser(msgTemp,"chat");
         var chatId =  jsonParser(chatTemp,"id");
-       //console.log("ChatID: " + chatId);
+        console.log("ChatID: " + chatId);
         var docTemp = jsonParser(msgTemp,"document");     
         var docId;
         if ( typeof docTemp !== 'undefined' && docTemp )
@@ -37,8 +37,6 @@ app.post('/', function (req, res) {
             docId = jsonParser(docTemp,"file_id");
             console.log("Document ID: " + docId);
         } 
-
-        
 
         if ( typeof docId !== 'undefined' && docId )
         {       
