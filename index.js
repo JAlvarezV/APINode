@@ -59,7 +59,18 @@ app.post('/', function (req, res) {
                 }
                 )      
                 .then((response) => {
-                   console.log(response);
+                   //Return response to telegram
+                    axios.post("https://api.telegram.org/bot"+ process.env.telegramToken + "/sendMessage",
+                    {
+                        chat_id: sessionId,
+                        text: "Thank you for providing us with the document. Our claim department will contact you later."
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });    
                 })
                 .catch((error) => {
                     console.log(error);
