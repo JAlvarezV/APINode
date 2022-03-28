@@ -62,7 +62,7 @@ app.post('/', function (req, res) {
                    //Return response to telegram
                     axios.post("https://api.telegram.org/bot"+ process.env.telegramToken + "/sendMessage",
                     {
-                        chat_id: sessionId,
+                        chat_id: chatId,
                         text: "Thank you for providing us with the document. Our claim department will contact you later."
                     })
                     .then(function (response) {
